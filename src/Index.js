@@ -41,6 +41,15 @@ let pokemons = [
         altura_m: 0.3,
         peso_kg: 6.5,
         descripcion: "Pokémon con código genético inestable, puede evolucionar en varias formas."
+    },
+    {
+        id: 156,
+        nombre: "Gible",
+        tipo: ["dragón", "tierra"],
+        altura: 5,
+        peso_kg: 4,
+        descripcion: "Pokémon tiburon martillo."
+
     }
 ];
 app.use(express.json())
@@ -93,25 +102,25 @@ app.patch("/api/v1/pokemon/:id", (request, response) => {
         const {
             nombre, tipo, altura
         } = request.body
-        if (nombre !== undefined){
-            if (typeof nombre !== "string" || !nombre.trim()){
+        if (nombre !== undefined) {
+            if (typeof nombre !== "string" || !nombre.trim()) {
                 throw new Error(400)
             }
             pokemon.nombre = nombre.trim()
         }
-        if (tipo !== undefined){
-            if (!Array.isArray(tipo) || !tipo.every(t => typeof t === "string")){
+        if (tipo !== undefined) {
+            if (!Array.isArray(tipo) || !tipo.every(t => typeof t === "string")) {
                 throw new Error(400)
             }
             pokemon.tipo = tipo
-            
+
         }
-        if (altura !== undefined){
-            if (typeof altura !== "number"){
+        if (altura !== undefined) {
+            if (typeof altura !== "number") {
                 throw new Error(400)
             }
             pokemon.altura_m = altura
-            
+
         }
         return response.status(204).send()
 
